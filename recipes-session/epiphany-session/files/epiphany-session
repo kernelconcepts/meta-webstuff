@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Script that starts minimal Epiphany session 
+
+EPIPHANY_SESSION_DIR=/etc/mini_x/session.d
+
+# Execute session file on behalf of file owner
+if [ -d $EPIPHANY_SESSION_DIR ]; then
+    for SESSIONFILE in $EPIPHANY_SESSION_DIR/*; do
+	set +e
+	USERNAME=`stat -c %U $SESSIONFILE`
+	sudo -b -i -u $USERNAME $SESSIONFILE&
+	set -e
+    done
+fi
+
+# Disable Screen saver and blanking
+xset s off
+xset s noblank
+xset -dpms
+
+mkdir ~/.config 2>&1 > /dev/null
+WEBKIT_DISABLE_TBS=1 /usr/bin/epiphany -a --profile ~/.config http://localhost/index.html &
+
+exec matchbox-window-manager -use_cursor no
+
