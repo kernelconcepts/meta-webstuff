@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Script that starts minimal Epiphany session 
+
+DILLO_SESSION_DIR=/etc/mini_x/session.d
+
+# Execute session file on behalf of file owner
+if [ -d $DILLO_SESSION_DIR ]; then
+    for SESSIONFILE in $DILLO_SESSION_DIR/*; do
+	set +e
+	USERNAME=`stat -c %U $SESSIONFILE`
+	sudo -b -i -u $USERNAME $SESSIONFILE&
+	set -e
+    done
+fi
+
+# Disable Screen saver and blanking
+xset s off
+xset s noblank
+xset -dpms
+
+/usr/bin/change_browser_url.sh http://www.yoctoproject.org
+
+/usr/bin/dillo&
+
+exec matchbox-window-manager
