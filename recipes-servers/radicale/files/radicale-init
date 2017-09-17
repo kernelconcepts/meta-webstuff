@@ -1,0 +1,30 @@
+#!/bin/sh
+
+PIDFILE=/var/run/radicale.pid
+
+case "$1" in
+  start)
+    echo -n "Starting radicale"
+        start-stop-daemon --start --quiet --background \
+        --user radicale \
+        --pidfile ${PIDFILE} --make-pidfile \
+        --exec /usr/bin/radicale -- --foreground
+    echo "."
+    ;;
+  stop)
+    echo -n "Stopping radicale"
+      start-stop-daemon --stop --quiet \
+         --pidfile ${PIDFILE}
+    echo "."
+    ;;
+  restart)
+      $0 stop
+      sleep 1
+      $0 start
+    ;;
+  *)
+    echo "Usage: /etc/init.d/radicale {start|stop|restart}"
+    exit 1
+esac
+
+exit 0
