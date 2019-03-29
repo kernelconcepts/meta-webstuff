@@ -1,0 +1,8 @@
+<?php
+$CONFIG = array (
+  'trusted_domains' =>
+  array (
+    0 => '$MACHINE.local',
+  ),
+  'datadirectory' => '$DATADIR',
+);
