@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# Script that starts minimal Chromium session 
+
+SESSION_DIR=/etc/mini_x/session.d
+
+# Execute session file on behalf of file owner
+if [ -d $SESSION_DIR ]; then
+    for SESSIONFILE in $SESSION_DIR/*; do
+	set +e
+	USERNAME=`stat -c %U $SESSIONFILE`
+	sudo -b -i -u $USERNAME $SESSIONFILE&
+	set -e
+    done
+fi
+
+# Disable Screen saver and blanking
+xset s off
+xset s noblank
+xset -dpms
+
+/usr/bin/chromium --disable-gpu --no-sandbox --disable-session-chrashed-bubble http://www.kernelconcepts.de &
+
+exec matchbox-window-manager -use_cursor no
