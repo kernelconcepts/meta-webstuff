@@ -19,6 +19,9 @@ xset s off
 xset s noblank
 xset -dpms
 
-/usr/bin/chromium --disable-gpu --disable-features=TranslateUI --test-type --no-sandbox --disable-session-chrashed-bubble http://www.kernelconcepts.de &
+/usr/bin/chromium --disable-gpu --disable-features=TranslateUI --test-type --no-sandbox --disable-session-chrashed-bubble --kiosk --app=http://www.kernelconcepts.de &
+
+killall psplash
+killall dotsplash
 
 exec matchbox-window-manager -use_cursor no
