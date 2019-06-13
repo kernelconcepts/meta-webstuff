@@ -1,0 +1,14 @@
+diff --git a/json/json_value.cpp b/json/json_value.cpp
+index cc5e2b0..2d89f1b 100644
+--- a/json/json_value.cpp
++++ b/json/json_value.cpp
+@@ -1134,7 +1134,8 @@ Value &
+ Value::resolveReference( const char *key, 
+                          bool isStatic )
+ {
+-   JSON_ASSERT( type_ == nullValue  ||  type_ == objectValue );
++   if ( type_ != objectValue )
++      *this = Value( nullValue );
+    if ( type_ == nullValue )
+       *this = Value( objectValue );
+ #ifndef JSON_VALUE_USE_INTERNAL_MAP

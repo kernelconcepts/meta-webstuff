@@ -1,0 +1,15 @@
+[Unit]
+Description=domoticz_service
+After=basic.target
+
+[Service]
+Type=forking
+PIDFile=/var/lib/domoticz/domoticz.pid
+ExecStart=/var/lib/domoticz/domoticz -daemon -www 8080 -sslwww 8443 -syslog -pidfile /var/lib/domoticz/domoticz.pid
+WorkingDirectory=LIBDIR/domoticz/
+Restart=on-abort
+User=domoticz
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
