@@ -1,4 +1,4 @@
-DESCRIPTION = "openHAB2 home automation recipe. An Internet connection is 
+DESCRIPTION = "openHAB2 home automation recipe. An Internet connection is \
  recommended in order to install addons."
 HOMEPAGE = "http://www.openhab.org"
 LICENSE = "EPL-1.0"
