@@ -20,7 +20,7 @@ S = "${WORKDIR}"
 # Add autostart ability
 inherit autotools update-rc.d
 INITSCRIPT_NAME = "openhab"
-INITSCRIPT_PARAMS = "defaults"
+INITSCRIPT_PARAMS = "defaults 80"
 
 do_compile () {
 }
