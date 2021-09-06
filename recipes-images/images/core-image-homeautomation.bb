@@ -4,7 +4,7 @@ IMAGE_FEATURES += "package-management ssh-server-dropbear"
 
 LICENSE = "MIT"
 
-inherit core-image distro_features_check
+inherit core-image features_check
 
 IMAGE_INSTALL_append += "custom-appstart haveged"
 #IMAGE_INSTALL_append += "domoticz"
