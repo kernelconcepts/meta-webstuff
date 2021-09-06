@@ -17,8 +17,7 @@ SRC_URI = "https://download.nextcloud.com/server/releases/${P}.tar.bz2 \
            file://apache.conf \
            file://nginx.conf \
 	"
-SRC_URI[md5sum] = "58334a961ed87f4267b1e11ce353aea7"
-SRC_URI[sha256sum] = "a80ce586e9e930b2fba69707311e575346cd4dc4402e84678c730f9930d78aee"
+SRC_URI[sha256sum] = "a273e0151f68567f729d9a82a7e3f124ff0f0471aa17bae6bfd83c5362d84cd8"
 
 S = "${WORKDIR}/${PN}"
 
