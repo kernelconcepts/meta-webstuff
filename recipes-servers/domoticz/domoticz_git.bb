@@ -27,16 +27,16 @@ EXTRA_OECMAKE = " -DBOOST_INCLUDEDIR=${STAGING_INCDIR} \
                 "
 
 INITSCRIPT_PACKAGES = "${PN}"
-INITSCRIPT_NAME_${PN} = "domoticz"
-INITSCRIPT_PARAMS_${PN} = "defaults 80"
+INITSCRIPT_NAME:${PN} = "domoticz"
+INITSCRIPT_PARAMS:${PN} = "defaults 80"
 
-do_compile_append() {
+do_compile:append() {
     sed -i 's:USERNAME=.*:USERNAME=domoticz:g' ${S}/domoticz.sh
     sed -i 's:DAEMON=.*:DAEMON=${localstatedir}/lib/domoticz/\$NAME:g' ${S}/domoticz.sh
     sed -i 's:. /lib/init/vars.sh::g' ${S}/domoticz.sh
 }
 
-do_install_append() {
+do_install:append() {
     install -d ${D}/${sysconfdir}/init.d
     install -m755 ${S}/domoticz.sh ${D}/${sysconfdir}/init.d/domoticz
 
@@ -56,20 +56,20 @@ do_install_append() {
     rmdir ${D}${prefix}
 }
 
-FILES_${PN}-dbg += "${localstatedir}/lib/domoticz/.debug/"
+FILES:${PN}-dbg += "${localstatedir}/lib/domoticz/.debug/"
 
-SYSTEMD_SERVICE_${PN} = "domoticz.service"
+SYSTEMD_SERVICE:${PN} = "domoticz.service"
 
 USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = " \
+USERADD_PARAM:${PN} = " \
     --system --no-create-home \
     --home ${localstatedir}/lib/domoticz \
     --groups dialout \
     --user-group domoticz"
 
 # Domoticz is mostly used in combination with a smart meter (ftdi dongles) or an rftrxx (acm based).
-RRECOMMENDS_${PN} += "python3 \
+RRECOMMENDS:${PN} += "python3 \
                       kernel-module-cdc-acm \
                       kernel-module-usbserial \
                      "
-RDEPENDS_${PN} += "lsb"
+RDEPENDS:${PN} += "lsb"
