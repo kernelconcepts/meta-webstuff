@@ -4,11 +4,11 @@ IMAGE_FEATURES += "package-management ssh-server-dropbear"
 
 LICENSE = "MIT"
 
-inherit core-image features_check
+inherit core-image
 
-IMAGE_INSTALL_append += "nextcloud custom-appstart \
-                         joe openssh-sftp-server \
-                         strace i2c-tools"
+IMAGE_INSTALL += "nextcloud custom-appstart \
+                  joe openssh-sftp-server \
+                  strace i2c-tools"
 
 # 200 MiB of additional storage for installable addons and data
 IMAGE_ROOTFS_EXTRA_SPACE = "200000"
