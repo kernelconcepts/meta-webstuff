@@ -33,7 +33,7 @@ do_compile() {
 	PNG_CONFIG=pkg-config oe_runmake
 }
 
-do_install_append() {
+do_install:append() {
         install -d ${D}${datadir}/applications
         install -d ${D}${datadir}/pixmaps
         install -m 0644 ${WORKDIR}/dillo.desktop ${D}${datadir}/applications/dillo.desktop
