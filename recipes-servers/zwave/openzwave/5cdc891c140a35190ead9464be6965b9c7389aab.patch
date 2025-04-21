@@ -1,0 +1,24 @@
+From 5cdc891c140a35190ead9464be6965b9c7389aab Mon Sep 17 00:00:00 2001
+From: slowriot <slowriot@users.noreply.github.com>
+Date: Tue, 18 Apr 2023 16:47:23 +0100
+Subject: [PATCH] Fix incorrect null pointer check
+
+Upstream-Status: Submitted
+
+---
+ cpp/src/command_classes/AssociationCommandConfiguration.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cpp/src/command_classes/AssociationCommandConfiguration.cpp b/cpp/src/command_classes/AssociationCommandConfiguration.cpp
+index 576441250b..073edea8eb 100644
+--- a/cpp/src/command_classes/AssociationCommandConfiguration.cpp
++++ b/cpp/src/command_classes/AssociationCommandConfiguration.cpp
+@@ -183,7 +183,7 @@ namespace OpenZWave
+ 					if (Node* node = GetNodeUnsafe())
+ 					{
+ 						Group* group = node->GetGroup(groupIdx);
+-						if ( NULL == group)
++						if ( NULL != group)
+ 						{
+ 							if (firstReports)
+ 							{

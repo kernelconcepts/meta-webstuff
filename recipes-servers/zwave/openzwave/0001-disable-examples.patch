@@ -1,0 +1,29 @@
+From 08792547eb4c7facea58daabdc9250fb022db37c Mon Sep 17 00:00:00 2001
+From: Florian Boor <florian.boor@kernelconcepts.de>
+Date: Mon, 21 Apr 2025 21:50:23 +0200
+Subject: [PATCH] disable examples
+
+---
+ Makefile | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index df879c35..5971f0ea 100644
+--- a/Makefile
++++ b/Makefile
+@@ -21,15 +21,12 @@ export UNAME
+ 
+ all: 
+ 	@LDFLAGS="$(LDFLAGS)" CPPFLAGS="$(CPPFLAGS)" $(MAKE) -C $(top_srcdir)/cpp/build/ -$(MAKEFLAGS)
+-	@LDFLAGS="$(LDFLAGS)" CPPFLAGS="$(CPPFLAGS)" $(MAKE) -C $(top_srcdir)/cpp/examples/MinOZW/ -$(MAKEFLAGS)
+ 
+ install:
+ 	@$(MAKE) -C $(top_srcdir)/cpp/build/ -$(MAKEFLAGS) $(MAKECMDGOALS)
+-	@$(MAKE) -C $(top_srcdir)/cpp/examples/MinOZW/ -$(MAKEFLAGS) $(MAKECMDGOALS)
+ 
+ clean:
+ 	@$(MAKE) -C $(top_srcdir)/cpp/build/ -$(MAKEFLAGS) $(MAKECMDGOALS)
+-	@$(MAKE) -C $(top_srcdir)/cpp/examples/MinOZW/ -$(MAKEFLAGS) $(MAKECMDGOALS)
+ 	@$(MAKE) -C $(top_srcdir)/cpp/test/ -$(MAKEFLAGS) $(MAKECMDGOALS)
+ 
+ updateIndexDefines:
