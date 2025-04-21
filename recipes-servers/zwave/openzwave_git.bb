@@ -12,7 +12,7 @@ SRCREV = "b0b09127ed736d7e09104f499a0bade38afb65d7"
 # counts git commits since 1.5 tag
 PV = "1.4.2886"
 
-SRC_URI = "git://github.com/OpenZWave/open-zwave.git;protocol=https"
+SRC_URI = "git://github.com/OpenZWave/open-zwave.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 
